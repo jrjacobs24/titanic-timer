@@ -1,7 +1,7 @@
 {
   "name": "titantic-timer",
   "version": "1.0.0",
-  "description": "Hey personal event timer that uses the length of Titanic as the metric for measuring time. <3 For Haven",
+  "description": "A personal event timer that uses the length of Titanic as the metric for measuring time. <3 For Haven",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
@@ -20,10 +20,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }
