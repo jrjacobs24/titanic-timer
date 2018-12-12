@@ -1,0 +1,29 @@
+{
+  "name": "titantic-timer",
+  "version": "1.0.0",
+  "description": "Hey personal event timer that uses the length of Titanic as the metric for measuring time. <3 For Haven",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@date-io/luxon": "0.0.2",
+    "@material-ui/core": "3.6.2",
+    "luxon": "1.8.2",
+    "material-ui-pickers": "2.0.4",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-scripts": "2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
