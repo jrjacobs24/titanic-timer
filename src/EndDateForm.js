@@ -1,37 +1,24 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import DateInput from "./DateInput";
-import TimeInput from "./TimeInput";
+import { DateTimePicker } from "material-ui-pickers";
 
-class EndDateForm extends React.Component {
+class EndDateForm extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      dateValue: null,
-      timeValue: null
+      selectedDate: new Date()
     };
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = () => {
-    console.log(`Date: ${this.state.dateValue}`);
-    console.log(`Time: ${this.state.timeValue}`);
+  handleChange = date => {
+    this.setState({ selectedDate: date });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <DateInput
-          value={this.state.dateValue}
-          name="dateValue"
-          onChange={this.handleChange}
-        />
-        <TimeInput
-          value={this.state.timeValue}
-          name="timeValue"
+        <DateTimePicker
+          value={this.state.selectedDate}
           onChange={this.handleChange}
         />
       </form>
