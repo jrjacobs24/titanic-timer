@@ -1,29 +1,21 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { DateTimePicker } from "material-ui-pickers";
+import { changeDate } from "./actions";
+import { getSelectedDate } from "./reducer";
 
-class EndDateForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedDate: new Date()
-    };
+const EndDateForm = ({ selectedDate, onDateChange }) => (
+  <form>
+    <DateTimePicker value={selectedDate} onChange={onDateChange} />
+  </form>
+);
+
+export default connect(
+  state => ({
+    selectedDate: getSelectedDate(state)
+  }),
+  {
+    onDateChange: changeDate
   }
-
-  handleChange = date => {
-    this.setState({ selectedDate: date });
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <DateTimePicker
-          value={this.state.selectedDate}
-          onChange={this.handleChange}
-        />
-      </form>
-    );
-  }
-}
-
-export default EndDateForm;
+)(EndDateForm);
