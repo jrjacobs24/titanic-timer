@@ -1,17 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import LuxonUtils from "@date-io/luxon";
-import { MuiPickersUtilsProvider } from "material-ui-pickers";
-import rootReducer from "./reducer";
+import { Container, Grid } from "@material-ui/core";
+import StateProvider from "./state/Provider";
 import EndDateForm from "./EndDateForm";
-import "./styles.css";
+import CountDisplay from "./components/CountDisplay";
+import Header from "./components/Header";
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import "react-datepicker/dist/react-datepicker.css";
+import "./styles.css";
 
 /**
  * - Receive date/time input from user
@@ -22,15 +18,21 @@ const store = createStore(
 
 function App() {
   return (
-    <Provider store={store}>
-      <MuiPickersUtilsProvider utils={LuxonUtils}>
-        <div className="App">
-          <h1>Hello CodeSandbox</h1>
-          <h2>Start editing to see some magic happen!</h2>
-          <EndDateForm />
-        </div>
-      </MuiPickersUtilsProvider>
-    </Provider>
+    <>
+      <StateProvider>
+        <Grid container spacing={4} className="App">
+          <Grid item xs={12}>
+            <Header />
+          </Grid>
+          <Grid item xs={12}>
+            <EndDateForm />
+          </Grid>
+          <Grid item xs={12}>
+            <CountDisplay />
+          </Grid>
+        </Grid>
+      </StateProvider>
+    </>
   );
 }
 
