@@ -1,35 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import DatePicker from "react-datepicker";
-import { differenceInMilliseconds } from "date-fns";
 import { TextField } from "@material-ui/core";
-import { EventIcon } from "@material-ui/icons";
+import getUpdatedCount from "./util/getUpdatedCount";
 import PackageContext from "./state/Context";
 
-// 3hr 15min in milliseconds
-const timeMetric = 11700000;
-// const timeMetric = Duration.fromObject({ hours: 3, minutes: 15 }).as("minutes");
-console.log(timeMetric);
-
 const EndDateForm = () => {
-  const [endDate, setEndDate] = useState(new Date());
-  const { setTitanicCount } = useContext(PackageContext);
+  const { endDate, setEndDate, setTitanicCount } = useContext(PackageContext);
 
   console.log("End Date: ", endDate);
 
   const onDateChange = (end) => {
-    const startDate = new Date();
-    console.log("Start Date: ", startDate);
-
-    const baseInterval = differenceInMilliseconds(end, startDate);
-    const titanicCount = (baseInterval / timeMetric).toFixed(2);
+    const titanicCount = getUpdatedCount(end);
 
     setEndDate(end);
     setTitanicCount(titanicCount);
   };
 
-  const InputField = (props) => {
-    return <TextField label="Enter End Date & Time" {...props} />;
-  };
+  const InputField = React.forwardRef((props, ref) => {
+    return <TextField ref={ref} label="Enter End Date & Time" {...props} />;
+  });
 
   return (
     <form>
@@ -41,6 +30,7 @@ const EndDateForm = () => {
           onChange={onDateChange}
           showTimeSelect
           dateFormat="Pp"
+          minDate={new Date()}
         />
       </div>
     </form>
